@@ -30,7 +30,7 @@ const SurahReaderPage = () => {
     <div className="min-h-screen overflow-y-scroll">
       <Navbar />
       <div className="p-8">
-        <h1 className="text-3xl font-bold mb-4">{`Surah ${surahNumber} - ${surah.name}`}</h1>
+        <h1 className="text-3xl font-bold mb-4">{`Surah ${surahNumber} - ${surah.name} - ${surah.englishName}`}</h1>
         {loading ? (
           <div className="flex items-center justify-center h-64">
             <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-opacity-50"></div>
@@ -47,7 +47,7 @@ const SurahReaderPage = () => {
                 <p className="text-lg font-thin mb-2">
                   Ayah {ayah.numberInSurah}{" "}
                 </p>{" "}
-                <p className="text-6xl font-thin mb-2">{ayah.text}</p>
+                <p className="text-4xl font-medium mb-3">{ayah.text}</p>
               </div>
             ))}
           </div>
