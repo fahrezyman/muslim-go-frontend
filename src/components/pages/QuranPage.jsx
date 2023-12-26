@@ -1,25 +1,26 @@
+// QuranReadingPage.jsx
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Navbar from "../molecules/Navbar";
 
-const QuranReadingPage = () => {
-  const [surahs, setSurahs] = useState([]);
+const QuranPage = () => {
+  const [surat, setSurat] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchSurahs = async () => {
+    const fetchSurat = async () => {
       try {
         const response = await fetch("http://localhost:3000/quran/list");
         const data = await response.json();
-        console.log("Data from the API:", data);
-        setSurahs(data);
-        setLoading(false); // Set loading to false after data is fetched
+        setSurat(data);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching Surahs:", error);
-        setLoading(false); // Set loading to false in case of an error
+        setLoading(false);
       }
     };
 
-    fetchSurahs();
+    fetchSurat();
   }, []);
 
   return (
@@ -28,22 +29,24 @@ const QuranReadingPage = () => {
       <div className="p-8">
         <h1 className="text-3xl font-bold mb-4">Surah List</h1>
         {loading ? (
-          <div className="flex items-center justify-center">
-            {/* You can replace this with your preferred loading spinner or animation */}
-            <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-indigo-500"></div>
+          // Tailwind CSS animation for loading spinner
+          <div className="flex items-center justify-center h-64">
+            <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-opacity-50"></div>
           </div>
         ) : (
+          // Render surah cards once data is fetched
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {surahs.map((surah) => (
-              <div
-                key={surah.number}
-                className="p-2 md:p-4 bg-white rounded shadow cursor-pointer"
-              >
-                <p className="text-lg font-bold mb-2">{surah.number}</p>
-                <p className="text-lg font-bold mb-2">{surah.name}</p>
-                <p className="text-sm">Surah Name: {surah.englishName}</p>
-                <p className="text-sm">Number of Ayat: {surah.numberOfAyahs}</p>
-              </div>
+            {surat.map((surat) => (
+              <Link to={`/quran/surah/${surat.number}`} key={surat.number}>
+                <div className="p-2 md:p-4 bg-white rounded shadow cursor-pointer">
+                  <p className="text-lg font-bold mb-2">{surat.number}</p>
+                  <p className="text-lg font-bold mb-2">{surat.name}</p>
+                  <p className="text-sm">Surah Name: {surat.englishName}</p>
+                  <p className="text-sm">
+                    Number of Ayat: {surat.numberOfAyahs}
+                  </p>
+                </div>
+              </Link>
             ))}
           </div>
         )}
@@ -52,4 +55,4 @@ const QuranReadingPage = () => {
   );
 };
 
-export default QuranReadingPage;
+export default QuranPage;
