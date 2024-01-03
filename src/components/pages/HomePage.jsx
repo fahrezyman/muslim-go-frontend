@@ -2,6 +2,7 @@
 import Navbar from "../molecules/Navbar";
 import HeroImage from "../../assets/hero-image.png";
 import { Link } from "react-router-dom";
+import TypingAnimation from "../molecules/TypingAnimation";
 
 const HomePage = () => {
   return (
@@ -17,10 +18,11 @@ const HomePage = () => {
           </p>
           <Link
             to="/quran"
-            className="block bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded text-center no-underline"
+            className="block bg-indigo-500 hover:bg-indigo-700 text-white font-bold mb-3 py-2 px-4 rounded text-center no-underline"
           >
             Get Started
           </Link>
+          <TypingAnimation />
         </div>
         <div className="md:w-1/2 hidden md:flex justify-center items-center h-screen">
           <img src={HeroImage} alt="Hero Image" className="w-full" />

@@ -27,6 +27,11 @@ const QuranPage = () => {
     <div className="min-h-screen overflow-y-scroll">
       <Navbar />
       <div className="p-8">
+        <Link to="/">
+          <button className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold mb-5 py-2 px-4 rounded">
+            Back to Home
+          </button>
+        </Link>
         <h1 className="text-3xl font-bold mb-4">Surah List</h1>
         {loading ? (
           // Tailwind CSS animation for loading spinner
